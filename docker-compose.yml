@@ -1,7 +1,7 @@
 services:
   web:
     build: .
-    command: python app.py   # <--- TAMBAHAN
+    command: python app.py   # <--- addition agar running stabil d windows
     restart: unless-stopped
     ports:
       - "5000:5000"
