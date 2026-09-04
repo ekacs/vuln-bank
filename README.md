@@ -157,7 +157,7 @@ cd vuln-bank
 
 2. Start the application:
 ```bash
-docker-compose up -d --build
+docker-compose up --build
 ```
 
 The application will be available at `http://localhost:5000`
