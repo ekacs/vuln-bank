@@ -155,7 +155,7 @@ git clone https://github.com/Commando-X/vuln-bank.git
 cd vuln-bank
 ```
 
-2. Start the application:
+2. Start the application: ( running on windows)
 ```bash
 docker-compose up --build
 ```
