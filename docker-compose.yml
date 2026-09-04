@@ -1,6 +1,7 @@
 services:
   web:
     build: .
+    command: python app.py   # <--- TAMBAHAN
     restart: unless-stopped
     ports:
       - "5000:5000"
@@ -21,7 +22,6 @@ services:
     networks:
       - vuln_network
     labels:
-      # Opt this container in to autoheal (see the `autoheal` service below).
       - autoheal=true
 
   db:
@@ -44,18 +44,12 @@ services:
       retries: 5
       start_period: 10s
 
-  # Restarts containers Docker marks `unhealthy`.
   autoheal:
     image: willfarrell/autoheal:latest
     restart: unless-stopped
     environment:
-      # Only watch containers explicitly labelled `autoheal=true` (the web
-      # app), never every container on the host.
       - AUTOHEAL_CONTAINER_LABEL=autoheal
-      # Poll container health every 10s.
       - AUTOHEAL_INTERVAL=10
-      # Grace period before monitoring a freshly (re)started container, so a
-      # normal slow boot isn't treated as a failure.
       - AUTOHEAL_START_PERIOD=30
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
